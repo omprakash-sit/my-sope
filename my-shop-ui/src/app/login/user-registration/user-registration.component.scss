@@ -1,0 +1,12 @@
+.card-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(45deg, black, transparent);
+}
+
+.form-card {
+    max-width: 600px;
+    margin: 5rem auto;
+}

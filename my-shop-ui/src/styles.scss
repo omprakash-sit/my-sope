@@ -1,0 +1,163 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+  margin: 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.content {
+  display: flex;
+  margin: 82px auto 32px;
+  padding: 0 16px;
+  max-width: 960px;
+  flex-direction: column;
+  align-items: center;
+}
+
+a,
+a:visited,
+a:hover {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #125699;
+}
+
+/* common element styles */
+.flex {
+  display: flex !important;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.justify-cc {
+  justify-content: center;
+}
+
+.justify-cr {
+  justify-content: end;
+}
+
+.justify-cl {
+  justify-content: start;
+}
+
+/* padding, margin */
+$size: 100;
+
+@mixin no-padding($side) {
+  @if $side=="all" {
+    .no-padd {
+      padding: 0 !important;
+    }
+  }
+
+  @else {
+    .no-padd-#{$side} {
+      padding-#{$side}: 0 !important;
+    }
+
+    .no-mr-#{$side} {
+      margin-#{$side}: 0 !important;
+    }
+  }
+}
+
+@include no-padding("left");
+@include no-padding("right");
+@include no-padding("top");
+@include no-padding("bottom");
+@include no-padding("all");
+
+@mixin padding {
+  @for $i from 0 to $size {
+    $p-unit: $i * 1px;
+
+    .pd-#{$i} {
+      padding: $p-unit;
+    }
+
+    .pdl-#{$i} {
+      padding-left: $p-unit;
+    }
+
+    .pdr-#{$i} {
+      padding-right: $p-unit;
+    }
+
+    .pdt-#{$i} {
+      padding-top: $p-unit !important;
+    }
+
+    .pdb-#{$i} {
+      padding-bottom: $p-unit;
+    }
+  }
+}
+
+@mixin margin {
+  @for $i from 0 to $size {
+    $m-unit: $i * 1px;
+
+    .mra-#{$i} {
+      margin: $m-unit;
+    }
+
+    .mrl-#{$i} {
+      margin-left: $m-unit;
+    }
+
+    .mrr-#{$i} {
+      margin-right: $m-unit;
+    }
+
+    .mrt-#{$i} {
+      margin-top: $m-unit;
+    }
+
+    .mrb-#{$i} {
+      margin-bottom: $m-unit;
+    }
+
+    .mrl-m-#{$i} {
+      margin-left: -$m-unit;
+    }
+
+    .mrr-m-#{$i} {
+      margin-right: -$m-unit;
+    }
+  }
+}
+
+@include padding();
+@include margin();
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}

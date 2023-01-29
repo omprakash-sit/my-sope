@@ -1,0 +1,37 @@
+<div class="login-card-container">
+    <div class="login-card">
+        <form [formGroup]="loginForm" (submit)="submitForm()">
+            <mat-card class="mat-card">
+                <mat-card-header class="justify-cl">
+                    <mat-card-title>LogIn</mat-card-title>
+                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                </mat-card-header>
+
+                <mat-card-content>
+                    <mat-form-field class="mat-form-field" appearance="fill">
+                        <mat-label>User Id:</mat-label>
+                        <input matInput type="text" formControlName="userId">
+                    </mat-form-field>
+                    <mat-form-field class="mat-form-field" appearance="fill">
+                        <mat-label>Password:</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                    <mat-checkbox formControlName="isAdmin">Login As Admin</mat-checkbox>
+                    <!-- <a routerLink="/forget-password">forget password ?</a> -->
+                </mat-card-content>
+
+                <mat-card-actions class="flex justify-cr">
+                    <button mat-button mat-flat-button color="primary" type="submit">Sign In</button>
+                </mat-card-actions>
+                <mat-divider></mat-divider>
+                <div class="row mrt-5">
+                    <div class="col-12 flex justify-cc mrt-10">
+                        <button mat-button mat-flat-button color="accent"
+                            (click)="newUser()">Create
+                            Account</button>
+                    </div>
+                </div>
+            </mat-card>
+        </form>
+    </div>
+</div>

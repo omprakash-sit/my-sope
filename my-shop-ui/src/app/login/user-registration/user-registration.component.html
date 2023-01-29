@@ -1,0 +1,48 @@
+<div class="card-container">
+    <div class="form-card">
+        <form [formGroup]="newUserForm" (submit)="submitForm()">
+            <mat-card class="mat-card">
+                <mat-card-header class="justify-cl">
+                    <mat-card-title style="padding-left: -16px;">Create Account</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <mat-form-field class="mat-form-field" appearance="fill">
+                        <mat-label>Your Name</mat-label>
+                        <input matInput type="text" formControlName="name">
+                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-3">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Code</mat-label>
+                                <mat-select formControlName="phoneCode">
+                                    <mat-option *ngFor="let c of ['+91']" [value]="c">{{c}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-9">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Mobile Number</mat-label>
+                                <input matInput type="tel" min="10" max="10" formControlName="phone">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <mat-form-field class="mat-form-field">
+                        <mat-label>Email (optional)</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Create Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                    </mat-form-field>
+                    <!-- <mat-checkbox formControlName="isAdmin">Login As Admin</mat-checkbox> -->
+                </mat-card-content>
+
+                <mat-card-actions class="flex justify-cr">
+                    <a routerLink="/login">Already have an account ?</a>
+                    <button mat-button mat-flat-button color="primary" type="submit">Create</button>
+                </mat-card-actions>
+            </mat-card>
+        </form>
+    </div>
+</div>
