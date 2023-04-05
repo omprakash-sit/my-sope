@@ -10,3 +10,22 @@
   max-width: 400px;
   margin: 5rem auto;
 }
+
+/* responsive styles */
+@media screen and (max-width: 767px) {
+  .login-card-container {
+    display: block;
+
+    .login-card {
+      margin: 0;
+      max-width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .login-card {
+    max-width: 100%;
+    margin: 0;
+  }
+}

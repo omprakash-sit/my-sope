@@ -1,0 +1,30 @@
+.header-nav {
+    margin: auto;
+    width: 100%;
+    height: 50px;
+    padding: 0%;
+    // background: #3f51b5;
+}
+
+.website-header-logo {
+    width: 45px;
+    background-image: url('https://lh3.googleusercontent.com/a/AGNmyxYu8l-bQbxg0EC2A8zmqVVwYKXnQyOVRd58jihCgQ=s192-c-mo');
+    background-size: cover;
+}
+
+.mat-menu p {
+    &.mrt-15 {
+        margin-top: 15px;
+    }
+
+    margin-bottom: 5px;
+}
+
+.user-action-btn {
+    background: #fff;
+    border-radius: 50%;
+    min-width: 35px !important;
+    height: 35px;
+    width: 35px;
+    padding: 0;
+}

@@ -1,0 +1,45 @@
+<div class="row pdt-5">
+    <div class="col-12 header">
+        <!-- <b>Customer Records</b> -->
+        <button mat-raised-button color="primary" class="float-end" (click)="addRecords()">+ Add Records</button>
+    </div>
+    <div class="col-12 body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Paid</th>
+                        <th scope="col">Dues</th>
+                        <th scope="col">Comments</th>
+                        <th scope="col">Descriptions</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cr of customerRecords">
+                        <th scope="row">{{cr.date | date: 'dd-mm-yyyy'}}</th>
+                        <td>{{cr.name}}</td>
+                        <td>{{cr.address}}</td>
+                        <td>{{cr.contact}}</td>
+                        <td>{{cr.total}}</td>
+                        <td>{{cr.paid}}</td>
+                        <td>{{cr.dues}}</td>
+                        <td>{{cr.comments}}</td>
+                        <td>{{cr.descriptions}}</td>
+                        <td>
+                            <span class="material-symbols-outlined" (click)="addRecords(cr)">edit</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!customerRecords.length">
+                        <td colspan="10" style="text-align: center;">No Records</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

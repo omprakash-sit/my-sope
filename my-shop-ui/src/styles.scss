@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+$bold-font-color: #002c63;
+$risk-critical: #ef2424;
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
@@ -7,6 +10,8 @@ body {
 html,
 body {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
 :host {
@@ -74,6 +79,10 @@ $size: 100;
   @if $side=="all" {
     .no-padd {
       padding: 0 !important;
+    }
+
+    .no-mr {
+      margin: 0 !important;
     }
   }
 
@@ -156,6 +165,59 @@ $size: 100;
 
 @include padding();
 @include margin();
+
+/* common styles */
+.active-link {
+  color: #012c63;
+}
+
+button.active-link {
+  background-color: gainsboro;
+}
+
+.fw {
+  width: 100%;
+}
+
+.fh {
+  height: 100%;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/* typography */
+.title-label {
+  position: relative;
+  font-weight: bolder !important;
+  text-transform: capitalize;
+  color: $bold-font-color;
+  // border-bottom: 2px solid $risk-critical;
+  letter-spacing: 1px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 32px;
+    height: 2px;
+    background-color: $risk-critical;
+  }
+}
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {}

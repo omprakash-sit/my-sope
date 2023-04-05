@@ -1,0 +1,14 @@
+<div style="width: 60%;margin: auto;" class="pd-20">
+  <div class="row">
+    <div class="col-md-12">
+      <span class="error img-fluid rounded"></span>
+    </div>
+
+    <div class="col-md-12">
+      <h1 class="text-center">Error page!</h1>
+      <div *ngIf="errorMessage">
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+    </div>
+  </div>
+</div>

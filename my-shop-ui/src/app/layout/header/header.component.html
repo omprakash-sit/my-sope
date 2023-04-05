@@ -1,0 +1,38 @@
+<mat-toolbar class="header-nav" color="primary">
+    <div class="row fw no-mr">
+        <div class="col-4 flex">
+            <div mat-card-avatar class="website-header-logo"></div>
+        </div>
+        <div style="align-items: center;justify-content: flex-end;" class="col-8 flex">
+            <button mat-raised-button color="basic" [routerLink]="'/admin/dashboard'"
+                routerLinkActive="active-link">Dashboard</button>
+            <div class="pd-5"></div>
+            <button mat-raised-button color="basic" [routerLink]="'/admin/customer-records'"
+                routerLinkActive="active-link">Customer Records</button>
+            <div class="pd-5"></div>
+            <button mat-raised-button color="basic" [matMenuTriggerFor]="adminMenu">Admin</button>
+            <mat-menu #adminMenu="matMenu" xPosition="before">
+                <button mat-menu-item [routerLink]="'/admin/users'" routerLinkActive="active-link">Users</button>
+                <button mat-menu-item [routerLink]="'/admin/materials'"
+                    routerLinkActive="active-link">Materials</button>
+            </mat-menu>
+            <div class="pd-5"></div>
+            <button mat-mini-fab color="basic" [matMenuTriggerFor]="loggedInfoMenu">
+                <small [innerText]="displayName"></small>
+            </button>
+            <mat-menu #loggedInfoMenu="matMenu" xPosition="before">
+                <div class="mat-menu pd-10">
+                    <p class="text-center capitalize"><b>Welcome <span class="underline">{{loggedUserInfo.role}}</span>
+                            !</b></p>
+                    <p><b>Name: </b> {{loggedUserInfo.name}}</p>
+                    <p><b>Email: </b> {{loggedUserInfo.email}}</p>
+                    <p><b>Mobile No.: </b> {{loggedUserInfo.userId}}</p>
+                    <p class="text-center mrt-15">
+                        <button style="width: 100%;" mat-raised-button color="primary" (click)="logout()">Log
+                            out</button>
+                    </p>
+                </div>
+            </mat-menu>
+        </div>
+    </div>
+</mat-toolbar>

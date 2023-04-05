@@ -16,7 +16,7 @@
                         <mat-label>Password:</mat-label>
                         <input matInput type="password" formControlName="password">
                     </mat-form-field>
-                    <mat-checkbox formControlName="isAdmin">Login As Admin</mat-checkbox>
+                    <mat-checkbox formControlName="rememberMe">Remember my credentials</mat-checkbox>
                     <!-- <a routerLink="/forget-password">forget password ?</a> -->
                 </mat-card-content>
 
@@ -26,8 +26,7 @@
                 <mat-divider></mat-divider>
                 <div class="row mrt-5">
                     <div class="col-12 flex justify-cc mrt-10">
-                        <button mat-button mat-flat-button color="accent"
-                            (click)="newUser()">Create
+                        <button mat-button mat-flat-button color="accent" (click)="newUser()">Create
                             Account</button>
                     </div>
                 </div>

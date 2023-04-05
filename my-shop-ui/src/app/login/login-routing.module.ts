@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login.component';
 import { UserRegistrationComponent } from './user-registration/user-registration.component';
 
-const routes: Routes = [
+export const LOGIN_ROUTES: Routes = [
   {
     path: 'login',
     component: LoginComponent,
@@ -26,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(LOGIN_ROUTES)],
   exports: [RouterModule]
 })
 export class LoginRoutingModule { }
