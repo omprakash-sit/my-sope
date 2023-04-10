@@ -87,6 +87,10 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   getMaterialsControl(): FormArray {
     return (this.customerEntryForm.get('materials') as FormArray);
   }
+  getMaterialsControlByIndex(index: number): any {
+    const _m = (this.customerEntryForm.get('materials') as FormArray);
+    return _m ? _m.at(index).value : {};
+  }
   // create / update form
   getCustomerRecordsForm(): FormGroup {
     return this.fb.group({
@@ -164,5 +168,12 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       grade: '',
       brand: '',
     },]
+  }
+  // calculate and update quantity price
+  calcQuantityPrice(mi: number): void {
+    const md = this.getMaterialsControlByIndex(mi);
+    md['mqp'] = md.q * md.p;
+    console.log(md);
+    // this.customerEntryForm.controls.materials.
   }
 }

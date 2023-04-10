@@ -11,16 +11,13 @@ export class MatListComponent implements OnInit {
   dataSource: any;
   displayedColumns: any[] = [];
   @ViewChild(MatSort) sort: MatSort | undefined;
-  @Input() data: MatTableList = {
-    headList: [],
-    dataList: []
-  };
-  columnNames = this.data['headList'];
+  @Input('data') data!: MatTableList;
+  columnNames: any[] = [];
   constructor() {
-    console.log(this.data)
   }
 
   ngOnInit(): void {
+    this.columnNames = this.data['headList'];
     this.displayedColumns = this.columnNames.map((x: MatTableHead) => x.key);
     this.createTable();
   }

@@ -16,6 +16,7 @@ import { SharedCommonModule } from './shared/shared-common.module';
 import { DataCommunicationService } from './shared/services';
 import { ErrorComponent } from './layout/error/error.component';
 import { CustomerRecordsModule } from './customer-records/customer-records.module';
+import { DataUtilityService } from './shared/services/data-utility.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CustomerRecordsModule } from './customer-records/customer-records.modul
   providers: [
     AuthServerProvider,
     httpInterceptorProviders,
-    DataCommunicationService
+    DataCommunicationService,
+    DataUtilityService
   ],
   bootstrap: [AppComponent]
 })

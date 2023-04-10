@@ -33,14 +33,16 @@
                     </mat-form-field>
                 </div>
             </div>
-            <ng-container formArrayName="materials" *ngFor="let item of getMaterialsControl().controls; let i = index;">
+            <ng-container formArrayName="materials"
+                *ngFor="let item of getMaterialsControl().controls; let i = index;; let l = last">
                 <div class="row" [formGroupName]="i">
                     <div class="col-3">
                         <mat-form-field appearance="fill">
                             <mat-label>Select Material</mat-label>
-                            <mat-select formControlName="m" name="food">
+                            <mat-select formControlName="m" name="material">
                                 <mat-option *ngFor="let materialName of materialsName" [value]="materialName.name">
-                                    {{materialName.name}}{{materialName.brand}}
+                                    {{materialName.name}} <span
+                                        *ngIf="materialName.brand">({{materialName.brand}})</span>
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -48,13 +50,13 @@
                     <div class="col-2">
                         <mat-form-field appearance="fill">
                             <mat-label>Quantity</mat-label>
-                            <input matInput formControlName="q">
+                            <input matInput formControlName="q" (change)="calcQuantityPrice(i)">
                         </mat-form-field>
                     </div>
                     <div class="col-2">
                         <mat-form-field appearance="fill">
                             <mat-label>Price</mat-label>
-                            <input matInput formControlName="p">
+                            <input matInput formControlName="p" (change)="calcQuantityPrice(i)">
                         </mat-form-field>
                     </div>
                     <div class="col-2">
@@ -63,7 +65,7 @@
                             <input matInput formControlName="mqp">
                         </mat-form-field>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3" *ngIf="l">
                         <button class="mrr-7" mat-mini-fab color="primary">
                             <mat-icon style="font-size: 20px;" (click)="addMoreMaterial()">edit</mat-icon>
                         </button>
@@ -83,13 +85,13 @@
                 <div class="col-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Paid</mat-label>
-                        <input matInput formControlName="total">
+                        <input matInput formControlName="paid">
                     </mat-form-field>
                 </div>
                 <div class="col-4">
                     <mat-form-field appearance="fill">
                         <mat-label>Dues</mat-label>
-                        <input matInput formControlName="total">
+                        <input matInput formControlName="dues">
                     </mat-form-field>
                 </div>
             </div>

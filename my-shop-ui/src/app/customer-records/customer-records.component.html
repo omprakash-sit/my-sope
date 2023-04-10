@@ -1,10 +1,10 @@
-<div class="row pdt-5">
+<div class="row pd-10">
     <div class="col-12 header">
         <!-- <b>Customer Records</b> -->
         <button mat-raised-button color="primary" class="float-end" (click)="addRecords()">+ Add Records</button>
     </div>
-    <div class="col-12 body">
-        <div class="table-responsive">
+    <div class="col-12 body pdt-5">
+        <div class="table-responsive card">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -22,13 +22,13 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let cr of customerRecords">
-                        <th scope="row">{{cr.date | date: 'dd-mm-yyyy'}}</th>
+                        <th scope="row">{{cr.date | date: 'dd MMM, yyyy'}}</th>
                         <td>{{cr.name}}</td>
                         <td>{{cr.address}}</td>
                         <td>{{cr.contact}}</td>
-                        <td>{{cr.total}}</td>
-                        <td>{{cr.paid}}</td>
-                        <td>{{cr.dues}}</td>
+                        <td class="_bfc">{{cr.total}}</td>
+                        <td class="_gfc">{{cr.paid}}</td>
+                        <td class="_rfc">{{cr.dues}}</td>
                         <td>{{cr.comments}}</td>
                         <td>{{cr.descriptions}}</td>
                         <td>

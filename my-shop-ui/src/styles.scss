@@ -172,7 +172,8 @@ $size: 100;
 }
 
 button.active-link {
-  background-color: gainsboro;
+  background-color: #ffc107;
+  color: black;
 }
 
 .fw {
@@ -217,6 +218,18 @@ button.active-link {
     height: 2px;
     background-color: $risk-critical;
   }
+}
+
+._rfc {
+  color: red !important;
+}
+
+._gfc {
+  color: green !important;
+}
+
+._bfc {
+  color: blue !important;
 }
 
 /* Responsive Styles */
