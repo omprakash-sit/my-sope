@@ -72,6 +72,13 @@ a:hover {
   justify-content: start;
 }
 
+/* common element styles */
+.cp {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 /* padding, margin */
 $size: 100;
 

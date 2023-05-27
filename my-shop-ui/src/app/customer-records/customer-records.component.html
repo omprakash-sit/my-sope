@@ -32,7 +32,7 @@
                         <td>{{cr.comments}}</td>
                         <td>{{cr.descriptions}}</td>
                         <td>
-                            <span class="material-symbols-outlined" (click)="addRecords(cr)">edit</span>
+                            <mat-icon class="mat-edit-icon cp" (click)="addRecords(cr)">edit</mat-icon>
                         </td>
                     </tr>
                     <tr *ngIf="!customerRecords.length">
