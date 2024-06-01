@@ -23,6 +23,7 @@
                 <mat-card-actions class="flex justify-cr">
                     <button mat-button mat-flat-button color="primary" type="submit">Sign In</button>
                 </mat-card-actions>
+                <div class="_rfc" *ngIf="loginError">Please check user id, password is incorrect!</div>
                 <mat-divider></mat-divider>
                 <div class="row mrt-5">
                     <div class="col-12 flex justify-cc mrt-10">

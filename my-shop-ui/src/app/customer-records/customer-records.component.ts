@@ -30,35 +30,50 @@ export class CustomerRecordsComponent implements OnInit {
     })
   }
   addRecords(data?: CustomerRecords): void {
+    const title = data ? 'Update Customer Invoice' : 'Create Customer Invoice';
     const dialogRef = this.dialog.open(CustomerRecordsEntryDialogComponent, {
       width: '70%',
       height: '85%',
-      data: { title: 'Customer Records Entry', data: data }
+      data: { title, data: data }
     });
     dialogRef.afterClosed().subscribe(formData => {
       console.log(formData);
-      if (data) {
-        // call api for save
-      } else {
-        // create new records
-        const customerInfo = {
-          name: formData.name,
-          contact: formData.contact ? formData.contact : null,
-          address: formData.address,
-          date: this.dus.formatedDate(formData.date, 'sql'),
-          comments: formData.comments,
-          descriptions: formData.descriptions,
-          total: formData.total,
-          paid: formData.paid,
-          dues: formData.dues
+      if (formData) {
+        if (data) {
+          // call api for save
+          if (data.customerId) {
+            // const customerMaterials = this.getFormatedMaterials(formData['materials']);
+            // const req = { ...formData, ...customerMaterials };
+            this.customerRecordsService.updateCustomerRecords(data.customerId, formData).subscribe((res: HttpResponse<any>) => {
+              alert(res.body.message);
+              this.getAllCustomerRecords();
+              // check datetime type in db.sql
+            });
+          } else {
+            alert("customer id not correct !");
+          }
+        } else {
+          // create new records
+          const customerInfo = {
+            name: formData.name,
+            contact: formData.contact ? formData.contact : null,
+            address: formData.address,
+            date: this.dus.formatedDate(formData.date, 'sql'),
+            comments: formData.comments,
+            // descriptions: formData.descriptions,
+            total: formData.total,
+            paid: formData.paid,
+            dues: formData.dues
+          }
+          const customerMaterials = this.getFormatedMaterials(formData['materials']);
+          const req = { ...customerInfo, ...customerMaterials };
+          console.log(req);
+          this.customerRecordsService.createCustomerRecords(req).subscribe((res: HttpResponse<any>) => {
+            alert(res.body.message);
+            this.getAllCustomerRecords();
+            // check datetime type in db.sql
+          });
         }
-        const customerMaterials = this.getFormatedMaterials(formData['materials']);
-        const req = { ...customerInfo, ...customerMaterials };
-        this.customerRecordsService.createCustomerRecords(req).subscribe((res: HttpResponse<any>) => {
-          alert(res.body.message);
-          this.getAllCustomerRecords();
-          // check datetime type in db.sql
-        });
       }
     });
   }
@@ -70,7 +85,7 @@ export class CustomerRecordsComponent implements OnInit {
       fm['m' + (i + 1)] = materials[i].m;
       fm['q' + (i + 1)] = materials[i].q;
       fm['p' + (i + 1)] = materials[i].p;
-      fm['m' + (i + 1) + 'qp'] = materials[i].mqp;
+      // fm['m' + (i + 1) + 'qp'] = materials[i].mqp;
     }
     return fm;
   }

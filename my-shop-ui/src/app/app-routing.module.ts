@@ -16,7 +16,7 @@ import { LOGIN_ROUTES } from './login/login-routing.module';
     },
     ...LOGIN_ROUTES,
     ...errorRoute
-  ], { enableTracing: true, useHash: true })],
+  ], { enableTracing: false, useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

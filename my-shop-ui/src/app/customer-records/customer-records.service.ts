@@ -12,7 +12,11 @@ export class CustomerRecordsService {
   constructor(private http: HttpClient) { }
 
   createCustomerRecords(req: CustomerRecords): Observable<HttpResponse<any>> {
-    return this.http.post(this.baseURL + 'customer/create-customer-records', req, { observe: 'response' })
+    return this.http.post(this.baseURL + 'customer/create-customer-invoice', req, { observe: 'response' })
+      .pipe(map((response: HttpResponse<any>) => this.convertResponse(response)));
+  }
+  updateCustomerRecords(id: number, req: CustomerRecords): Observable<HttpResponse<any>> {
+    return this.http.put(this.baseURL + 'customer/update-customer-invoice' + `/${id}`, req, { observe: 'response' })
       .pipe(map((response: HttpResponse<any>) => this.convertResponse(response)));
   }
   getCustomerRecords(): Observable<HttpResponse<any[]>> {
