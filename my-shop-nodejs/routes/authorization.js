@@ -11,7 +11,7 @@ var auth = require('../services/authentication');
 router.post('/authenticate', (req, res) => {
     console.log("requested for authentication...");
     let rb = req.body;
-    var query = "select name,phone,role,status,password from user where phone=?";
+    var query = "select name,mobile_number,role,status,password from users where mobile_number=?";
     connection.query(query, [rb.userId], (err, result) => {
         if (!err) {
             if (result.length && result[0].password === rb.password) {
@@ -31,17 +31,17 @@ router.post('/authenticate', (req, res) => {
 // login
 router.post('/login', auth.authenticateToken, (req, res) => {
     let rb = req.body;
-    var query = "select * from user where phone=?";
+    var query = "select * from users where mobile_number=?";
     console.log("Login request from %s", rb.userId);
     connection.query(query, [rb.userId], (err, result) => {
         if (!err) {
-            if (result.length <= 0 || rb.userId != result[0].phone) {
+            if (result.length <= 0 || rb.userId != result[0].mobile_number) {
                 return res.status(401).json({ message: "Incorrect user id or password" });
             } else if (result[0].status !== "active") {
                 return res.status(401).json({ message: "User is inactive." });
             } else if (result[0].password === rb.password) {
                 const _records = result[0];
-                const response = { id: _records.id, name: _records.name, userId: _records.phone, phoneCode: _records.phoneCode, email: _records.email, status: _records.status, role: _records.role }
+                const response = { id: _records.id, name: _records.name, userId: _records.mobile_number, phoneCode: _records.phone_code, email: _records.email, status: _records.status, role: _records.role }
                 res.status(200).json(response);
             } else {
                 return res.status(400).json({ message: "Please try again." });

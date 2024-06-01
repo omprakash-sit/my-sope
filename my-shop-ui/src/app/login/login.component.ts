@@ -12,6 +12,7 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  loginError = "";
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     console.table(this.loginForm.value);
     this.loginService.getAuthenticate(this.loginForm.value).then((data: HttpResponse<any>) => {
       const response = data.body ?? null;
+      this.loginError = "";
       if (response) {
         this.dcs.setStorage('loggedInfo', response);
         if (this.loginForm.value.rememberMe) {
@@ -48,6 +50,7 @@ export class LoginComponent implements OnInit {
         this.loginService.logout();
       }
     }).catch((error: any) => {
+      this.loginError = error.error?.message;
       console.log(error);
     })
     // if (this.loginForm.value.isAdmin) {

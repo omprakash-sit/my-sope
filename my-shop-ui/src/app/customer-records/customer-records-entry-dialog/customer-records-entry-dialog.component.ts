@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { CustomerRecords } from 'src/app/shared/models/customer-records.model';
 import { MaterialsInvoiceEntry, MaterialsName } from 'src/app/shared/models/materials.model';
 
 @Component({
@@ -12,6 +13,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   customerEntryForm: FormGroup;
   materials: FormArray;
   materialsName: MaterialsName[];
+  customerOwn = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private fb: FormBuilder
@@ -24,62 +26,32 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.dialogData);
     // this.createForm();
-    // json sample
-    let customerData = {
-      "date": "",
-      "name": "",
-      "contact": "",
-      "address": "",
-      "m1": "",
-      "m2": "",
-      "m3": "",
-      "m4": "",
-      "m5": "",
-      "m6": "",
-      "m7": "",
-      "m8": "",
-      "m9": "",
-      "m10": "",
-      "m1q": 0.0,
-      "m2q": 0.0,
-      "m3q": 0.0,
-      "m4q": 0.0,
-      "m5q": 0.0,
-      "m6q": 0.0,
-      "m7q": 0.0,
-      "m8q": 0.0,
-      "m9q": 0.0,
-      "m10q": 0.0,
-      "m1p": 0,
-      "m2p": 0,
-      "m3p": 0,
-      "m4p": 0,
-      "m5p": 0,
-      "m6p": 0,
-      "m7p": 0,
-      "m8p": 0,
-      "m9p": 0,
-      "m10p": 0,
-      "m1qp": 0.0,
-      "m2qp": 0.0,
-      "m3qp": 0.0,
-      "m4qp": 0.0,
-      "m5qp": 0.0,
-      "m6qp": 0.0,
-      "m7qp": 0.0,
-      "m8qp": 0.0,
-      "m9qp": 0.0,
-      "m10qp": 0.0,
-      "total": 0.0,
-      "paid": "",
-      "dues": "",
-      "comments": "",
-      "descriptions": ""
+    if (this.dialogData.data) {
+      const data = this.dialogData.data;
+      const formData = {
+        name: data.name,
+        date: data.purchaseDate,
+        contact: data.contact,
+        address: data.address,
+        total: data.total,
+        dues: data.dues,
+        paid: data.paid,
+        comments: data.comments
+      }
+      this.updateCustomerInvoiceForm(formData);
     }
   }
+  // add material row in list
   addMoreMaterial(): void {
     this.materials = this.getMaterials();
     this.materials.push(this.createMaterialForm());
+  }
+  // remove material row at index from list
+  removeMaterial(index: number): void {
+    const deleteConfirmation = confirm("Do you want to delete item ?");
+    if (deleteConfirmation) {
+      console.log("yes delete row");
+    }
   }
   getMaterials(): FormArray {
     return this.customerEntryForm.get('materials') as FormArray;
@@ -99,11 +71,10 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       contact: [''],
       address: [''],
       materials: this.fb.array([this.createMaterialForm()]),
-      total: [0],
-      paid: [0],
-      dues: [0],
+      total: [0.0],
+      paid: [0.0],
+      dues: [0.0],
       comments: [''],
-      descriptions: ['']
     });
   }
   createMaterialForm(): FormGroup {
@@ -172,8 +143,25 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   // calculate and update quantity price
   calcQuantityPrice(mi: number): void {
     const md = this.getMaterialsControlByIndex(mi);
-    md['mqp'] = md.q * md.p;
-    console.log(md);
-    // this.customerEntryForm.controls.materials.
+    md['mqp'] = (md.q * md.p);
+    const mfai = (this.customerEntryForm.get('materials') as FormArray).at(mi); // materials form array index
+    mfai?.patchValue({ "mqp": md['mqp'] });
+    const totalAmount = this.customerEntryForm.get('materials')?.value?.reduce((a: any, c: MaterialsInvoiceEntry) => a + c.mqp, 0);
+    this.updateCustomerInvoiceForm({ "total": totalAmount });
+    if (this.customerEntryForm.get('paid')?.value) {
+      this.calculateDuesAmount();
+    }
+  }
+  // calculate dues amount
+  calculateDuesAmount(): void {
+    const totalAmount = this.customerEntryForm.get('total')?.value;
+    const paidAmount = this.customerEntryForm.get('paid')?.value;
+    const dues = totalAmount - paidAmount;
+    this.customerOwn = dues < 0 ? true : false;
+    this.updateCustomerInvoiceForm({ "dues": dues });
+  }
+  // update form
+  updateCustomerInvoiceForm(data: CustomerRecords): void {
+    this.customerEntryForm.patchValue(data);
   }
 }

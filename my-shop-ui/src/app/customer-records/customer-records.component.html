@@ -10,27 +10,29 @@
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Address</th>
                         <th scope="col">Contact</th>
+                        <th scope="col">Address</th>
                         <th scope="col">Total</th>
                         <th scope="col">Paid</th>
                         <th scope="col">Dues</th>
+                        <th scope="col">Dues Paid</th>
+                        <th scope="col">DP Date</th>
                         <th scope="col">Comments</th>
-                        <th scope="col">Descriptions</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let cr of customerRecords">
-                        <th scope="row">{{cr.date | date: 'dd MMM, yyyy'}}</th>
-                        <td>{{cr.name}}</td>
-                        <td>{{cr.address}}</td>
-                        <td>{{cr.contact}}</td>
+                        <th scope="row">{{cr.purchaseDate | date: 'dd MMM, yyyy'}}</th>
+                        <td>{{cr.name ?? '--'}}</td>
+                        <td>{{cr.contact ?? '--'}}</td>
+                        <td>{{cr.address ?? '--'}}</td>
                         <td class="_bfc">{{cr.total}}</td>
                         <td class="_gfc">{{cr.paid}}</td>
                         <td class="_rfc">{{cr.dues}}</td>
-                        <td>{{cr.comments}}</td>
-                        <td>{{cr.descriptions}}</td>
+                        <td>{{cr.duesPaid ?? '--'}}</td>
+                        <td>{{cr.duesPaidDate ?? '--'}}</td>
+                        <td>{{cr.comments ?? '--'}}</td>
                         <td>
                             <mat-icon class="mat-edit-icon cp" (click)="addRecords(cr)">edit</mat-icon>
                         </td>

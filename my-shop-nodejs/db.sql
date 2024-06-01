@@ -1,31 +1,33 @@
-create table user(
+create table users(
     id int primary key AUTO_INCREMENT,
     name varchar(250),
-    phone bigint(10),
-    phoneCode int(3),
+    mobile_number bigint(10) NOT NULL,
+    phone_code int(3),
     email varchar(50),
     password varchar(50),
     role varchar(50),
     address varchar(250),
     status varchar(50),
-    UNIQUE(phone)
+    UNIQUE(mobile_number)
 );
-insert into user(name,phone,phoneCode,email,password,role,address,status) values('om prakash', 8553900794,'+91','ops.prakash@gmail.com','admin','admin','Bangalore','active');
-alter table `myshop`.`user` modify column `phoneCode` varchar(3);
+insert into users(name,mobile_number,phoneCode,email,password,role,address,status) values('om prakash', 0053900700,'+91','om.prakash@gmail.com','admin','admin','Bangalore','active');
+-- alter table `myshop`.`users` modify column `phoneCode` varchar(3);
+ALTER TABLE `myshop`.`users` 
+CHANGE COLUMN `phoneCode` `phone_code` INT NULL DEFAULT NULL ;
 -- INSERT INTO `myshop`.`user` (`id`, `name`, `phone`, `phoneCode`, `email`, `password`, `role`, `address`, `status`) VALUES ('2', 'test user', '8553900794', '+91', 'alt.h4-89mdzeb@yopmail.com', 'test', 'user', 'Bangalore', 'active');
 -- UPDATE `myshop`.`user` SET `password` = 'admin123' WHERE (`id` = '1');
 -- 06-04-2023 --
-create table customer_records(
+create table customer_invoice(
     id int NOT NULL AUTO_INCREMENT,
     name varchar(250) DEFAULT NULL,
-    contact bigint(10) DEFAULT NULL,
-    date datetime DEFAULT NULL,
-    address varchar(500) DEFAULT NULL,
+    mobile_number bigint(10) DEFAULT NULL,
+    purchase_date datetime DEFAULT NULL,
     comments varchar(250) DEFAULT NULL,
-    descriptions varchar(500) DEFAULT NULL,
-    total bigint(20) DEFAULT NULL,
-    paid bigint(20) DEFAULT NULL,
-    dues bigint(20) DEFAULT NULL,
+    total bigint(50) DEFAULT NULL,
+    paid bigint(50) DEFAULT NULL,
+    dues bigint(50) DEFAULT NULL,
+    dues_paid bigint(50) DEFAULT NULL,
+    dues_paid_date datetime DEFAULT NULL,
     m1 varchar(250) DEFAULT NULL,
     m2 varchar(250) DEFAULT NULL,
     m3 varchar(250) DEFAULT NULL,
@@ -56,16 +58,6 @@ create table customer_records(
     m8p bigint(20) DEFAULT NULL,
     m9p bigint(20) DEFAULT NULL,
     m10p bigint(20) DEFAULT NULL,
-    m1qp bigint(20) DEFAULT NULL,
-    m2qp bigint(20) DEFAULT NULL,
-    m3qp bigint(20) DEFAULT NULL,
-    m4qp bigint(20) DEFAULT NULL,
-    m5qp bigint(20) DEFAULT NULL,
-    m6qp bigint(20) DEFAULT NULL,
-    m7qp bigint(20) DEFAULT NULL,
-    m8qp bigint(20) DEFAULT NULL,
-    m9qp bigint(20) DEFAULT NULL,
-    m10qp bigint(20) DEFAULT NULL,
     PRIMARY KEY (`id`)
     -- UNIQUE(name)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

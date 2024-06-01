@@ -1,6 +1,7 @@
 export class CustomerRecords {
     constructor(
-        public date: Date,
+        public customerId?: number,
+        public purchaseDate?: Date | null,
         public name?: string,
         public contact?: string,
         public address?: string,
@@ -47,8 +48,9 @@ export class CustomerRecords {
         public total?: number,
         public paid?: number,
         public dues?: number,
+        public duesPaid?: number,
+        public duesPaidDate?: Date | null,
         public comments?: string,
-        public descriptions?: string
 
     ) {
 
