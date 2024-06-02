@@ -14,6 +14,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   materials: FormArray;
   materialsName: MaterialsName[];
   customerOwn = false;
+  readonly = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
     private fb: FormBuilder
@@ -27,6 +28,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
     console.log(this.dialogData);
     // this.createForm();
     if (this.dialogData.data) {
+      this.readonly = true;
       const data = this.dialogData.data;
       const formData = {
         name: data.name,
@@ -36,9 +38,17 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
         total: data.total,
         dues: data.dues,
         paid: data.paid,
-        comments: data.comments
+        comments: data.comments,
+        materials: [] //this.fb.array([])
+      }
+      if (data.materials?.length) {
+        data.materials.forEach((_d: MaterialsInvoiceEntry, i: number) => {
+          // (this.customerEntryForm.get('materials') as FormArray)?.insert(i, this.createMaterialForm(_d));
+          (this.customerEntryForm.get('materials') as FormArray).push(this.createMaterialForm(_d));
+        });
       }
       this.updateCustomerInvoiceForm(formData);
+      this.customerEntryForm.get("date")?.disable();
     }
   }
   // add material row in list
@@ -77,7 +87,10 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       comments: [''],
     });
   }
-  createMaterialForm(): FormGroup {
+  createMaterialForm(data?: MaterialsInvoiceEntry): FormGroup {
+    if (data) {
+      return this.fb.group(data as MaterialsInvoiceEntry);
+    }
     return this.fb.group({
       m: '',
       q: 0.0,

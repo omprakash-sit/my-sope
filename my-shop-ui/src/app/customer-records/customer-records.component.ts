@@ -42,9 +42,12 @@ export class CustomerRecordsComponent implements OnInit {
         if (data) {
           // call api for save
           if (data.customerId) {
-            // const customerMaterials = this.getFormatedMaterials(formData['materials']);
-            // const req = { ...formData, ...customerMaterials };
-            this.customerRecordsService.updateCustomerRecords(data.customerId, formData).subscribe((res: HttpResponse<any>) => {
+            const customerMaterials = this.getFormatedMaterials(formData['materials']);
+            delete formData['materials'];
+            const req = { ...formData, ...customerMaterials };
+            req['date'] = this.dus.formatedDate(req.date ?? data.purchaseDate, 'sql');
+            console.log(req);
+            this.customerRecordsService.updateCustomerRecords(data.customerId, req).subscribe((res: HttpResponse<any>) => {
               alert(res.body.message);
               this.getAllCustomerRecords();
               // check datetime type in db.sql

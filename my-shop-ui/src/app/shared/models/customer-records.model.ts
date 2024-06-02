@@ -51,7 +51,7 @@ export class CustomerRecords {
         public duesPaid?: number,
         public duesPaidDate?: Date | null,
         public comments?: string,
-
+        public materials?: any[]
     ) {
 
     }
