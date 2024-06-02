@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ANGULAR_VERSION } from 'src/app/app.constants';
 import { LoginService } from 'src/app/login/login.service';
 import { LoggedUser } from 'src/app/shared/models';
 import { DataCommunicationService } from 'src/app/shared/services';
@@ -9,16 +10,17 @@ import { DataCommunicationService } from 'src/app/shared/services';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  version: string;
   loggedUserInfo: LoggedUser;
   displayName: string = '';
   constructor(
     private dcs: DataCommunicationService,
     private loginService: LoginService) {
+    this.version = (ANGULAR_VERSION).full;
     this.loggedUserInfo = this.dcs.getStorage('loggedInfo');
   }
 
   ngOnInit(): void {
-    console.log(this.loggedUserInfo);
     this.displayName = this.getSN(this.loggedUserInfo.name);
   }
 

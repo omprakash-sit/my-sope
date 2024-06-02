@@ -8,7 +8,7 @@ import { ActivatedRouteSnapshot, NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'my-sope';
+  title = 'my-shop';
   constructor(
     private router: Router,
     private titleService: Title
