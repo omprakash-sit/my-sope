@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CustomerRecords } from 'src/app/shared/models/customer-records.model';
 import { MaterialsInvoiceEntry, MaterialsName } from 'src/app/shared/models/materials.model';
@@ -10,14 +10,14 @@ import { MaterialsInvoiceEntry, MaterialsName } from 'src/app/shared/models/mate
   styleUrls: ['./customer-records-entry-dialog.component.scss']
 })
 export class CustomerRecordsEntryDialogComponent implements OnInit {
-  customerEntryForm: FormGroup;
-  materials: FormArray;
+  customerEntryForm: UntypedFormGroup;
+  materials: UntypedFormArray;
   materialsName: MaterialsName[];
   customerOwn = false;
   readonly = false;
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: any,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) {
     this.customerEntryForm = this.getCustomerRecordsForm();
     this.materials = this.getMaterials();
@@ -44,7 +44,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       if (data.materials?.length) {
         data.materials.forEach((_d: MaterialsInvoiceEntry, i: number) => {
           // (this.customerEntryForm.get('materials') as FormArray)?.insert(i, this.createMaterialForm(_d));
-          (this.customerEntryForm.get('materials') as FormArray).push(this.createMaterialForm(_d));
+          (this.customerEntryForm.get('materials') as UntypedFormArray).push(this.createMaterialForm(_d));
         });
       }
       this.updateCustomerInvoiceForm(formData);
@@ -63,18 +63,18 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       console.log("yes delete row");
     }
   }
-  getMaterials(): FormArray {
-    return this.customerEntryForm.get('materials') as FormArray;
+  getMaterials(): UntypedFormArray {
+    return this.customerEntryForm.get('materials') as UntypedFormArray;
   }
-  getMaterialsControl(): FormArray {
-    return (this.customerEntryForm.get('materials') as FormArray);
+  getMaterialsControl(): UntypedFormArray {
+    return (this.customerEntryForm.get('materials') as UntypedFormArray);
   }
   getMaterialsControlByIndex(index: number): any {
-    const _m = (this.customerEntryForm.get('materials') as FormArray);
+    const _m = (this.customerEntryForm.get('materials') as UntypedFormArray);
     return _m ? _m.at(index).value : {};
   }
   // create / update form
-  getCustomerRecordsForm(): FormGroup {
+  getCustomerRecordsForm(): UntypedFormGroup {
     return this.fb.group({
       date: [new Date(), Validators.required],
       name: [''],
@@ -87,7 +87,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
       comments: [''],
     });
   }
-  createMaterialForm(data?: MaterialsInvoiceEntry): FormGroup {
+  createMaterialForm(data?: MaterialsInvoiceEntry): UntypedFormGroup {
     if (data) {
       return this.fb.group(data as MaterialsInvoiceEntry);
     }
@@ -157,7 +157,7 @@ export class CustomerRecordsEntryDialogComponent implements OnInit {
   calcQuantityPrice(mi: number): void {
     const md = this.getMaterialsControlByIndex(mi);
     md['mqp'] = (md.q * md.p);
-    const mfai = (this.customerEntryForm.get('materials') as FormArray).at(mi); // materials form array index
+    const mfai = (this.customerEntryForm.get('materials') as UntypedFormArray).at(mi); // materials form array index
     mfai?.patchValue({ "mqp": md['mqp'] });
     const totalAmount = this.customerEntryForm.get('materials')?.value?.reduce((a: any, c: MaterialsInvoiceEntry) => a + c.mqp, 0);
     this.updateCustomerInvoiceForm({ "total": totalAmount });
