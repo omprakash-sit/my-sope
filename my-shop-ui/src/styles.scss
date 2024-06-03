@@ -115,15 +115,15 @@ $size: 100;
     $p-unit: $i * 1px;
 
     .pd-#{$i} {
-      padding: $p-unit;
+      padding: $p-unit !important;
     }
 
     .pdl-#{$i} {
-      padding-left: $p-unit;
+      padding-left: $p-unit !important;
     }
 
     .pdr-#{$i} {
-      padding-right: $p-unit;
+      padding-right: $p-unit !important;
     }
 
     .pdt-#{$i} {
@@ -131,7 +131,7 @@ $size: 100;
     }
 
     .pdb-#{$i} {
-      padding-bottom: $p-unit;
+      padding-bottom: $p-unit !important;
     }
   }
 }
@@ -141,31 +141,31 @@ $size: 100;
     $m-unit: $i * 1px;
 
     .mra-#{$i} {
-      margin: $m-unit;
+      margin: $m-unit !important;
     }
 
     .mrl-#{$i} {
-      margin-left: $m-unit;
+      margin-left: $m-unit !important;
     }
 
     .mrr-#{$i} {
-      margin-right: $m-unit;
+      margin-right: $m-unit !important;
     }
 
     .mrt-#{$i} {
-      margin-top: $m-unit;
+      margin-top: $m-unit !important;
     }
 
     .mrb-#{$i} {
-      margin-bottom: $m-unit;
+      margin-bottom: $m-unit !important;
     }
 
     .mrl-m-#{$i} {
-      margin-left: -$m-unit;
+      margin-left: -$m-unit !important;
     }
 
     .mrr-m-#{$i} {
-      margin-right: -$m-unit;
+      margin-right: -$m-unit !important;
     }
   }
 }
@@ -243,3 +243,35 @@ button.active-link {
 @media screen and (max-width: 767px) {}
 
 @media screen and (max-width: 575px) {}
+
+/* Theme */
+:root {
+  // dark
+  --dark-bg1: #101828;
+  --dark-bg2: #1d2939;
+  // light
+  --light-bg1: #eee;
+  --light-bg2: #bbb;
+}
+
+@mixin custome-theme($v) {
+  .theme {
+    &__#{$v} {
+      .--bg1 {
+        background-color: var(--#{$v}-bg1);
+      }
+
+      .--bg2 {
+        background-color: var(--#{$v}-bg2);
+      }
+    }
+  }
+}
+
+@include custome-theme('dark');
+@include custome-theme('light');
+
+/* material styles override */
+.mat-mdc-form-field {
+  width: 100%;
+}

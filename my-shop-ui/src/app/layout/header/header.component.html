@@ -1,22 +1,22 @@
-<mat-toolbar class="header-nav" color="primary">
+<mat-toolbar class="header-nav --bg1">
   <div class="row fw no-mr">
     <div class="col-4 flex">
-      <div mat-card-avatar class="website-header-logo"></div>
+      <div mat-card-avatar class="website-header-logo mrb-0"></div>
     </div>
     <div style="align-items: center;justify-content: flex-end;" class="col-8 flex">
-      <button mat-raised-button color="basic" [routerLink]="'/admin/dashboard'"
+      <button mat-raised-button color="primary" [routerLink]="'/admin/dashboard'"
         routerLinkActive="active-link">Dashboard</button>
       <div class="pd-5"></div>
-      <button mat-raised-button color="basic" [routerLink]="'/admin/customer-records'"
+      <button mat-raised-button color="primary" [routerLink]="'/admin/customer-records'"
         routerLinkActive="active-link">Customer Records</button>
       <div class="pd-5"></div>
-      <button mat-raised-button color="basic" [matMenuTriggerFor]="adminMenu">Admin</button>
+      <button mat-raised-button color="primary" [matMenuTriggerFor]="adminMenu">Admin</button>
       <mat-menu #adminMenu="matMenu" xPosition="before">
         <button mat-menu-item [routerLink]="'/admin/users'" routerLinkActive="active-link">Users</button>
         <button mat-menu-item [routerLink]="'/admin/materials'" routerLinkActive="active-link">Materials</button>
       </mat-menu>
       <div class="pd-5"></div>
-      <button mat-mini-fab color="basic" [matMenuTriggerFor]="loggedInfoMenu">
+      <button mat-mini-fab color="primary" [matMenuTriggerFor]="loggedInfoMenu">
         <small [innerText]="displayName"></small>
       </button>
       <mat-menu #loggedInfoMenu="matMenu" xPosition="before">
