@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@use './assets/css/theme';
+
 $bold-font-color: #002c63;
 $risk-critical: #ef2424;
 
@@ -179,8 +181,8 @@ $size: 100;
 }
 
 button.active-link {
-  background-color: #ffc107;
-  color: black;
+  background-color: #ffc107 !important;
+  color: black !important;
 }
 
 .fw {
@@ -243,33 +245,6 @@ button.active-link {
 @media screen and (max-width: 767px) {}
 
 @media screen and (max-width: 575px) {}
-
-/* Theme */
-:root {
-  // dark
-  --dark-bg1: #101828;
-  --dark-bg2: #1d2939;
-  // light
-  --light-bg1: #eee;
-  --light-bg2: #bbb;
-}
-
-@mixin custome-theme($v) {
-  .theme {
-    &__#{$v} {
-      .--bg1 {
-        background-color: var(--#{$v}-bg1);
-      }
-
-      .--bg2 {
-        background-color: var(--#{$v}-bg2);
-      }
-    }
-  }
-}
-
-@include custome-theme('dark');
-@include custome-theme('light');
 
 /* material styles override */
 .mat-mdc-form-field {
