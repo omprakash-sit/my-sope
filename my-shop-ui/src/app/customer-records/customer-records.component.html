@@ -1,47 +1,59 @@
 <div class="row pd-10">
-    <div class="col-12 header">
-        <!-- <b>Customer Records</b> -->
-        <button mat-raised-button color="primary" class="float-end" (click)="addRecords()">+ Add Records</button>
+  <div class="col-12 header">
+    <!-- <b>Customer Records</b> -->
+    <button mat-raised-button color="primary" class="float-end" (click)="addRecords()">+ Add Records</button>
+  </div>
+  <div class="col-12 body pdt-5">
+    <div class="table-responsive card">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Address</th>
+            <th scope="col">Total</th>
+            <th scope="col">Paid</th>
+            <th scope="col">Dues</th>
+            <th scope="col">Dues Paid</th>
+            <th scope="col">DP Date</th>
+            <th scope="col">Comments</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- @for(cr of customerRecords; track cr.customerId) {
+                        <tr>
+                            <td>{{cr.name ?? '--'}}</td>
+                        </tr>
+                    }
+                    @empty{
+                        <tr>
+                            <td colspan="11" style="text-align: center;">No Records</td>
+                        </tr>
+                    } -->
+          <!-- / ng: 17+ syntax -->
+
+          <tr *ngFor="let cr of customerRecords">
+            <th scope="row">{{cr.purchaseDate | date: 'dd MMM, yyyy'}}</th>
+            <td>{{cr.name ?? '--'}}</td>
+            <td>{{cr.contact ?? '--'}}</td>
+            <td>{{cr.address ?? '--'}}</td>
+            <td class="_bfc">{{cr.total}}</td>
+            <td class="_gfc">{{cr.paid}}</td>
+            <td class="_rfc">{{cr.dues}}</td>
+            <td>{{cr.duesPaid ?? '--'}}</td>
+            <td>{{cr.duesPaidDate ?? '--'}}</td>
+            <td>{{cr.comments ?? '--'}}</td>
+            <td>
+              <mat-icon class="mat-edit-icon cp" (click)="addRecords(cr)">edit</mat-icon>
+            </td>
+          </tr>
+          <tr *ngIf="!customerRecords.length">
+            <td colspan="11" style="text-align: center;">No Records</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="col-12 body pdt-5">
-        <div class="table-responsive card">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Paid</th>
-                        <th scope="col">Dues</th>
-                        <th scope="col">Dues Paid</th>
-                        <th scope="col">DP Date</th>
-                        <th scope="col">Comments</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let cr of customerRecords">
-                        <th scope="row">{{cr.purchaseDate | date: 'dd MMM, yyyy'}}</th>
-                        <td>{{cr.name ?? '--'}}</td>
-                        <td>{{cr.contact ?? '--'}}</td>
-                        <td>{{cr.address ?? '--'}}</td>
-                        <td class="_bfc">{{cr.total}}</td>
-                        <td class="_gfc">{{cr.paid}}</td>
-                        <td class="_rfc">{{cr.dues}}</td>
-                        <td>{{cr.duesPaid ?? '--'}}</td>
-                        <td>{{cr.duesPaidDate ?? '--'}}</td>
-                        <td>{{cr.comments ?? '--'}}</td>
-                        <td>
-                            <mat-icon class="mat-edit-icon cp" (click)="addRecords(cr)">edit</mat-icon>
-                        </td>
-                    </tr>
-                    <tr *ngIf="!customerRecords.length">
-                        <td colspan="11" style="text-align: center;">No Records</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+  </div>
 </div>

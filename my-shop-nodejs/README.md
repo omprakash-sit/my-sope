@@ -7,3 +7,4 @@ install node_modules
 # create myshop schema
 # npm start
 run command npm start to run node server.
+# default userId: mobileno, pwd: admin
