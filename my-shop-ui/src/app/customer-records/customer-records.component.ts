@@ -7,9 +7,10 @@ import { HttpResponse } from '@angular/common/http';
 import { DataUtilityService } from '../shared/services/data-utility.service';
 
 @Component({
-  selector: 'app-customer-records',
-  templateUrl: './customer-records.component.html',
-  styleUrls: ['./customer-records.component.scss']
+    selector: 'app-customer-records',
+    templateUrl: './customer-records.component.html',
+    styleUrls: ['./customer-records.component.scss'],
+    standalone: false
 })
 export class CustomerRecordsComponent implements OnInit {
   customerRecords: CustomerRecords[] = [];

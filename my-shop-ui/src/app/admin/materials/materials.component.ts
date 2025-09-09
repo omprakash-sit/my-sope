@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableHead, MatTableList } from 'src/app/shared/components/mat-list/mat-list.component';
 @Component({
-  selector: 'app-materials',
-  templateUrl: './materials.component.html',
-  styleUrls: ['./materials.component.scss']
+    selector: 'app-materials',
+    templateUrl: './materials.component.html',
+    styleUrls: ['./materials.component.scss'],
+    standalone: false
 })
 export class MaterialsComponent implements OnInit {
   displayedColumns: MatTableHead[] = [

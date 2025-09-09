@@ -5,9 +5,10 @@ import { CustomerRecords } from 'src/app/shared/models/customer-records.model';
 import { MaterialsInvoiceEntry, MaterialsName } from 'src/app/shared/models/materials.model';
 
 @Component({
-  selector: 'app-customer-records-entry-dialog',
-  templateUrl: './customer-records-entry-dialog.component.html',
-  styleUrls: ['./customer-records-entry-dialog.component.scss']
+    selector: 'app-customer-records-entry-dialog',
+    templateUrl: './customer-records-entry-dialog.component.html',
+    styleUrls: ['./customer-records-entry-dialog.component.scss'],
+    standalone: false
 })
 export class CustomerRecordsEntryDialogComponent implements OnInit {
   customerEntryForm: UntypedFormGroup;

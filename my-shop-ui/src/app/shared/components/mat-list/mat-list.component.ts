@@ -3,9 +3,10 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-mat-list',
-  templateUrl: './mat-list.component.html',
-  styleUrls: ['./mat-list.component.scss']
+    selector: 'app-mat-list',
+    templateUrl: './mat-list.component.html',
+    styleUrls: ['./mat-list.component.scss'],
+    standalone: false
 })
 export class MatListComponent implements OnInit {
   dataSource: any;
