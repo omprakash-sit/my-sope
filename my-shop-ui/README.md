@@ -43,6 +43,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 @angular/core                      18.2.13 -> 19.2.9        ng update @angular/core@19
 @angular/material                  16.2.14 -> 17.3.9        ng update @angular/material@17
 
+## ng upgrade from 19 to 20
+@angular/cdk                       17.3.10 -> 18.2.9        ng update @angular/cdk@18
+@angular/cli                       19.2.15 -> 20.2.2        ng update @angular/cli
+@angular/core                      19.2.14 -> 20.2.4        ng update @angular/core
+@angular/material                  17.3.10 -> 18.2.9        ng update @angular/material@18
+
+// break change in node version,ckd,material to fix this follow below ...
+// upgrade node version v20.18.2 to V22.12.0 then update angular/cli
+> npm install -g @angular/cli
+> npm install @angular/cdk@20 @angular/material@20 --save --force // Angular and CDK must always be on the same major version.
+
 ## docker 
 To run docker command run > docker-compose up --build
 To stop all container run > docker-compose down -v
