@@ -29,6 +29,14 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## ng upgrade from 17 to 18
+> ng update
+@angular/cdk                       15.2.9 -> 16.2.9         ng update @angular/cdk@16
+@angular/cli                       17.3.8 -> 18.2.9         ng update @angular/cli@18
+@angular/core                      17.3.10 -> 18.2.9        ng update @angular/core@18
+@angular/material                  15.2.9 -> 16.2.9         ng update @angular/material@16
+> ng serve // successfully running on node - v20.18.2 | npm - 11.1.0
+
 ## docker 
 To run docker command run > docker-compose up --build
 To stop all container run > docker-compose down -v
