@@ -37,6 +37,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 @angular/material                  15.2.9 -> 16.2.9         ng update @angular/material@16
 > ng serve // successfully running on node - v20.18.2 | npm - 11.1.0
 
+## ng upgrade from 18 to 19
+@angular/cdk                       16.2.14 -> 17.3.9        ng update @angular/cdk@17
+@angular/cli                       18.2.20 -> 19.2.9        ng update @angular/cli@19
+@angular/core                      18.2.13 -> 19.2.9        ng update @angular/core@19
+@angular/material                  16.2.14 -> 17.3.9        ng update @angular/material@17
+
 ## docker 
 To run docker command run > docker-compose up --build
 To stop all container run > docker-compose down -v
