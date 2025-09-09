@@ -29,3 +29,6 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
+## docker 
+To run docker command run > docker-compose up --build
+To stop all container run > docker-compose down -v
